@@ -17,14 +17,14 @@ let BigNumber=234567898765432345678n;
 console.log("\n Printing values of primitive datatypes");
 console.table([num,name,isLoggedIn,outsideTemp,state,Id,anotherId,BigNumber]);
 console.log("\n Printing Types of primitive datatypes");
-console.log(`The Datatype of num ${typeof(num)}`);
-console.log(`The Datatype of name ${typeof(name)}`);
-console.log(`The Datatype of isLoggedIn ${typeof(isLoggedIn)}`);
-console.log(`The Datatype of outSideTemp ${typeof(outsideTemp)}`);
-console.log(`The Datatype of state ${typeof(state)}`);
-console.log(`The Datatype of Id ${typeof(Id)}`);
-console.log(`The Datatype of anotherId ${typeof(anotherId)}`);
-console.log(`The Datatype of BigNumber ${typeof(BigNumber)}`);
+console.log(`The Datatype of num ${typeof(num)}`); //number
+console.log(`The Datatype of name ${typeof(name)}`); //string
+console.log(`The Datatype of isLoggedIn ${typeof(isLoggedIn)}`); //boolean
+console.log(`The Datatype of outSideTemp ${typeof(outsideTemp)}`); //object
+console.log(`The Datatype of state ${typeof(state)}`); //undefined
+console.log(`The Datatype of Id ${typeof(Id)}`); //symbol
+console.log(`The Datatype of anotherId ${typeof(anotherId)}`); //symbol
+console.log(`The Datatype of BigNumber ${typeof(BigNumber)}`); //bigint
 console.log(Id === anotherId); //false
 
 // 2.Reference(Non-Primitive): Call by Reference
