@@ -28,7 +28,8 @@ console.log(`The type of var isLoggedIn is: ${typeof isLoggedIn}`)
 console.log(`The type of var state is: ${typeof state}`)
 console.log(`The type of Datatype Symbol is: ${typeof Symbol}`)
 console.log(`The type of Datatype null is: ${typeof null}`)
-console.log(`The type of Datatype BigInt is: ${typeof BigInt}`)
+console.log(`The type of Datatype BigInt is: ${typeof BigInt}`) 
+
 
 
 /*Primitive Datatypes:
