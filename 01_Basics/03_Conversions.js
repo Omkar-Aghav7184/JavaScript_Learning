@@ -8,7 +8,7 @@ let valueInNumber= Number(name)
 // console.log(`The value of valueNumber is ${valueInNumber}`);
 // console.log(`The Type of valueNumber is ${typeof(valueInNumber)}`);
 
-/* ""-->0; "33"-->33; "33omkar"--->NaN
+/* ""-->0; "33"-->33; "33omkar"--->NaN (Not a Number)
 true---> 1, false--->0
 null-->0 ; undefined -->NaN*/
 
