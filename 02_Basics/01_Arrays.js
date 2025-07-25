@@ -53,7 +53,7 @@ let captains=["MS Dhoni","Virat Kohli","Rohit Sharma","Kapil Dev","Sourav Gangul
 
 //slice vs spilce(Interview Question)
 //here 1 is inclusive but 5 is exclusive
-/*slice(start, end)
+/*7.slice(start, end)
 Returns a shallow copy of a part of the array.
 
 Does not modify the original array. */
@@ -62,13 +62,13 @@ Does not modify the original array. */
 // console.log("Original Array is: ",oddNumbs);
 // console.log("Sliced Array is: ",slicedArray);
 
-// Converts all elements of the array into a single string, separated by commas (default separator).
+//8.JOIN():- Converts all elements of the array into a single string, separated by commas (default separator).
 //Does NOT modify the original array.
 let newArr= oddNumbs.join();
 console.log(newArr);
 //1,3,5,7,9,11,13
 
-/*splice(start, deleteCount)
+/*9.Splice():- splice(start, deleteCount)
 Modifies the original array by removing/replacing/adding elements.
 Returns the deleted elements. */
 // let splicedArray= oddNumbs.splice(1,5)
