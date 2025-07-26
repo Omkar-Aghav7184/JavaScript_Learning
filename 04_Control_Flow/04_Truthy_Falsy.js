@@ -65,8 +65,8 @@ If eligible, print "Eligible to vote", otherwise print "Not eligible to vote". *
 
 let userAge= 20;
 
-let message1= userAge >= 18 ? "User Eligible to vote " : "User is not eligible to vote";
+let message= userAge >= 18 ? "User Eligible to vote " : "User is not eligible to vote";
 
-console.log(message1); 
+console.log(message); 
 
 
