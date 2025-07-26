@@ -61,9 +61,12 @@ console.log(value1); //100
 to check if the user is eligible to vote (i.e., age ≥ 18). 
 If eligible, print "Eligible to vote", otherwise print "Not eligible to vote". */
 
-// condition ? true : false
+// condition ? true : false 
 
 let userAge= 20;
 
-let message= userAge >= 18 ? "User Eligible to vote " : "User is not eligible to vote";
-console.log(message);
+let message1= userAge >= 18 ? "User Eligible to vote " : "User is not eligible to vote";
+
+console.log(message1); 
+
+
