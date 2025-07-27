@@ -3,9 +3,9 @@
     
 // }
 
-//Array may be of ["","",""], [{},{},{}]
+//Array may be of Numbers,Strings,Objects["","",""], [{},{},{}]
 
-//1.Write a program to iterate all elements of an array uing for-of loop
+//1.Write a program to iterate all elements of an array using for-of loop
 
 const arr = [1, 2, 3, 4, 5,6,7,8,9,10];
 
