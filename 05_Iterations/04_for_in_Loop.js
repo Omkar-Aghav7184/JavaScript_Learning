@@ -44,9 +44,11 @@ myMap.set("TN","TamilNadu");
 /*Note:-
 1. Map is not iterable with for-in.
 2. for-in only works on enumerable object keys, not on Map.
-3. Also: let [key, value] in myMap causes a SyntaxError. */
+3. Also: let [key, value] in myMap causes a SyntaxError. 
+4.Use for-of loop to iterate map*/
 
 // for(let [key,value] in myMap)
 // {
 //     console.log(`${key} is code for state ${value}`);
 // }
+
