@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Parent-Child Relations</title>
+</head>
+<body style="background-color: #212121; color: #fff;" >
+    <div class="parent">
+        <!-- This is comment Node -->
+        <h1 class="day">Monday</h1>
+        <h1 class="day">Tuesday</h1>
+        <h1 class="day">Wednesday</h1>
+        <h1 class="day">Thursday</h1>
+    </div>
+</body>
+<script>
+    let parentNode = document.querySelector(".parent");
+    // console.log(parent);
+    
+    console.log(parentNode);
+    console.log(parentNode.children); //HTMLCollection
+    console.log(typeof(parentNode.children)); //object 
+
+    console.log(parentNode.children[2].innerText); //wednesday
+
+    //Accessing all child nodes of parent class
+    console.log("\nAll child nodes of parentNode!");
+    
+    for(let index=0; index<parentNode.children.length ; index++)
+    {
+        // console.log(parentNode.children[index].innerHTML);
+    }
+
+    // querySelectorAll returns NodeList (not a single element)
+    let node= document.querySelectorAll(".parent");
+
+    /*querySelectorAll(".parent") returns a NodeList, not a single element.
+    .innerHTML is a property of an individual Element, not a property of a NodeList.*/
+
+    console.log(node); //NodeList
+    console.log(node.innerHTML); //undefined
+    console.log(node[0].innerHTML); 
+    // nodeList is a list; must access index 0 to manipulate
+    node[0].style.backgroundColor="green";
+    node[0].style.color="orange";
+
+    //Access firstChild
+    console.log("\nFirst Child Node parentNode!");
+    console.log(parentNode.firstElementChild);
+    console.log(parentNode.firstElementChild.innerHTML);
+
+    //Access LastChild
+    console.log("\nLast Child Node parentNode!");
+    console.log(parentNode.lastElementChild);
+    console.log(parentNode.lastElementChild.innerHTML);
+
+    //child to parent relationship
+    console.log("\nChild Node");
+    let childNode= document.querySelector(".day")
+    console.log(childNode);
+    console.log(typeof(childNode)); //object
+    
+    console.log("Inner Content of ChildNode is: ",childNode.innerHTML);//Monday
+
+    //Parent of childNode
+    console.log("\nParent of ChildNode is: ");
+    console.log(childNode.parentElement);
+    console.log(childNode.parentElement.innerHTML);
+    
+
+    //Sibilings of childNode (child-child relationship)
+    console.log("\nSibilings of ChildNode is: ");
+    console.log(childNode.nextElementSibling);
+    console.log(childNode.nextElementSibling.innerHTML);
+    
+    //Nodes
+    console.log("Nodes: ", parentNode.childNodes); //NodeList
+    console.log("Nodes: ", parentNode.childNodes.innerHTML); //undefined
+    console.log("Nodes: ", parentNode.childNodes[0].innerHTML); //undefined
+
+    /*Note:
+    1.parentNode.childNodes returns a NodeList of All Node Types, including: 
+    Element nodes (like <h1>), Text nodes (like line breaks, spaces), Comment nodes
+    2.document.querySelectorAll(".parent") returns a NodeList of Elements.
+    node[0] is a DOM element (a <div class="parent">).innerHTML is valid on elements
+    */
+
+</script>
+</html>
