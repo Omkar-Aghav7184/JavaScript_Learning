@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Create NewNode</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    
+</body>
+<script>
+    let div = document.createElement("div");
+    console.log(div);
+
+    div.className = "main";
+    div.id = (Math.floor(Math.random()*10+1));
+    div.setAttribute("title","scripted by Omkar Aghav");
+
+    // div.textContent= "Hello New Node Created by Omkar Champion!";
+    
+    // div.innerHTML= "Hello New Node Created by Omkar Aghav Champion!";
+    
+    div.style.backgroundColor = "magenta";
+    div.style.color = "white";
+    div.style.padding = "15px";
+    div.style.borderRadius = "15px";
+
+    let addText = document.createTextNode("Chai aur Code");
+    div.appendChild(addText);
+    
+
+    //To add in document need to append in body
+    document.body.appendChild(div)
+
+    /*Note:
+    1.//textContent replaces all children.
+    2.innerHTML sets or replaces the content inside the div. 
+    When you use innerHTML, it wipes out all previous child nodes.
+    3.This is safe, especially when content comes from user input or external data, 
+      because createTextNode() automatically escapes HTML.
+      You're not overwriting anything, unlike .innerHTML or .textContent.
+    */
+     
+</script>
+</html>
