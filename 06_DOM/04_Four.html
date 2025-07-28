@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Edit & REMOVE </title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+     
+    //Make a function to create NewNode in DOM
+    //1.LESS OPTIMIZED METHOD - uses innerHTML (can be unsafe and less efficient)
+    function addLang(langName)
+    {
+        let li = document.createElement('li');
+        //less optimize
+        li.innerHTML = `${langName}`;
+        const ul= document.querySelector('.language');
+        ul.appendChild(li);
+    } 
+
+    //2.✅OPTIMIZED METHOD - uses createTextNode (safe and clean)
+    function addOptimisedLang(langName)
+    {
+        const li = document.createElement("li");
+        const addText = document.createTextNode(langName);
+        li.appendChild(addText);
+        document.querySelector('.language').appendChild(li); 
+    }
+    addLang("Java");
+    addOptimisedLang("TypeScript");
+    addOptimisedLang("Python");
+    addOptimisedLang("Ruby");
+
+    //Edit Node
+    const secondLanguage = document.querySelector("li:nth-child(2)");
+    console.log(secondLanguage);
+
+    // ❌ Less Optimized: Direct innerHTML edit
+    // secondLanguage.innerHTML="CPP"; // Not safe for dynamic/user input
+
+    //better
+    const newLi = document.createElement('li');
+    // newLi.textContent = "golang";
+    // secondLanguage.replaceWith(newLi);
+
+    //best
+    /// Now we must reselect the new second item.(once it used then not exits in DOM)
+    
+    // const secondLanguage = document.querySelector("li:nth-child(2)");
+
+    let newList = document.createElement("li");
+    newList.appendChild(document.createTextNode("HTML"));    
+    secondLanguage.replaceWith(newList)
+
+    //Edit
+    const firstLanguage = document.querySelector("li:first-child");
+    console.log(firstLanguage);
+    firstLanguage.outerHTML= "<li>MOJO</li>"; // This replaces the full node with a new one
+
+    //REMOVE
+    const existNode = document.querySelector("li:nth-child(3)");
+    console.log(existNode);
+    existNode.remove();
+    
+    
+    
+</script>
+</html>
