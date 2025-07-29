@@ -210,6 +210,7 @@ function launchConfetti() {
     }
 
     animate();
+    
 
     // Auto remove confetti after 5 seconds
     setTimeout(() => {
