@@ -46,15 +46,17 @@ function validateGuess(guess){
     {
         alert("Please enter number less than 100!")
     }
-    else{
+    else {
+        numGuess++;
         previousGuesses.push(guess);
-        if(numGuess > 10)
-        {
-            cleanUpGuess(guess);
-            displayMessage(`Game Over.Unfortunately you lost game.Random Number was : ${randomNumber}`);
+        if(numGuess >= 10) {
+            guessSlot.innerHTML += `${guess}, `;
+            remaining.innerHTML = `0`;
+            if (guess !== randomNumber) {
+            displayMessage(`Game Over. The number was ${randomNumber}`);
+            }
             endGame();
-        }
-        else{
+        } else {
             cleanUpGuess(guess);
             checkGuess(guess);
         }
@@ -68,9 +70,6 @@ function checkGuess(userGuess){
     if( userGuess === randomNumber)
     {
         displayMessage(`🎉 Congratulations.You guessed the correct Number! 🎉`);
-        launchConfetti();
-        playCelebration();
-        showModal();
         endGame();
     }
     else if(userGuess < randomNumber)
@@ -91,7 +90,7 @@ function cleanUpGuess(userGuess)
     userInput.value = "";
     //add userGuesses
     guessSlot.innerHTML += `${userGuess}, `;
-    numGuess++;
+    // numGuess++;
     remaining.innerHTML = `${10-numGuess}`;
 }
 
@@ -117,7 +116,7 @@ function endGame(){
     startGame();
 }
 function startGame(){
-    const newGameButton = document.querySelector(".button");
+    const newGameButton = document.querySelector("#newGame");
     newGameButton.addEventListener('click', function(event){
         //Reset random Number
         randomNumber = Math.floor(Math.random()*100+1);
@@ -136,87 +135,10 @@ function startGame(){
         //flag changed
         playGame=true;
 
-        //Bonus- part
-        // Hide modal if visible
-document.querySelector("#congratsModal").style.display = "none";
-
-// Optional: Clear confetti canvas
-const confettiCanvas = document.getElementById("confetti-canvas");
-if (confettiCanvas) {
-    const ctx = confettiCanvas.getContext("2d");
-    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-}
-
-    })
-}
-
-
-/*Celebration functions */
-function playCelebration(){
-    const sound = document.querySelector("#celebrationSound");
-    sound.play();
-}
-
-function showModal()
-{
-    const modal = document.querySelector("#congratsModal");
-    const closeButton =document.querySelector(".close-Button");
-
-    modal.style.display = "block";
-
-    closeButton.addEventListener("click", function(){
-        modal.style.display ="none";
-    });
-
-    window.addEventListener("click", function(event){
-        if(event.target === modal)
-        {
-            modal.style.display = "none";
-        }
-    });
+         // ✅ Fix: Clear previous result message
+        lowOrHi.innerHTML = "";
+    } )
 };
-
-function launchConfetti() {
-    const canvas = document.createElement("canvas");
-    canvas.setAttribute("id", "confetti-canvas");
-    canvas.style.position = "fixed";
-    canvas.style.top = 0;
-    canvas.style.left = 0;
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.style.zIndex = 9999;
-    document.body.appendChild(canvas);
-
-    const confetti = canvas.getContext("2d");
-
-    // Simple falling rectangles for visual effect (not using external libs)
-    let pieces = Array.from({ length: 100 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 8 + 2,
-        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-        speed: Math.random() * 2 + 1
-    }));
-
-    function animate() {
-        confetti.clearRect(0, 0, canvas.width, canvas.height);
-        for (let piece of pieces) {
-            confetti.fillStyle = piece.color;
-            confetti.fillRect(piece.x, piece.y, piece.size, piece.size);
-            piece.y += piece.speed;
-            if (piece.y > canvas.height) piece.y = 0;
-        }
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-    
-
-    // Auto remove confetti after 5 seconds
-    setTimeout(() => {
-        canvas.remove();
-    }, 5000);
-}
 
 
 
