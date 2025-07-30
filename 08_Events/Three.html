@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Omkar Champion</h1>
+    <button id="start">start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    //Task: When we click on start button then start executing sayHello(),
+    //and click on stop button stop execution
+
+    const sayHello = function(){
+        let date = new Date();
+        console.log(`Hello Omkar Champion ${date.toTimeString()}!`);
+    }
+
+    let intervalId =null;
+    //when we click on start button. setInterval() should start!
+    document.getElementById("start").addEventListener('click', function(event){
+        //check if interValId is not null
+        if(!intervalId){
+            // console.log(intervalId);
+            intervalId = setInterval(sayHello,1000);
+        }   
+    })
+
+    //when we click on stop button. clearInterval() should stopped setInterval()
+    document.getElementById("stop").addEventListener('click',function(event){
+        // console.log(intervalId);
+        clearInterval(intervalId);
+        //clean InterValID
+        intervalId = null;
+    })
+
+    //changed title with printing mentioned parameter with date
+    const changedTitle = function(str){
+    let title = document.querySelector("h1");
+    let date =new Date();
+    title.textContent = `${str} on ${date.toUTCString()}`;
+   }
+    const changeMe = setInterval(changedTitle, 1000,"Top Contender Omkar Champion 💪");
+
+    // clearInterval(changeMe);
+
+</script>
+
+<!-- /*Note:
+ if (!intervalId) Means:
+“ 1.Only create a new interval if there is no existing one already running.”
+  intervalId starts as null (falsy).
+  When the interval is started, intervalId holds the timer ID (a number, truthy).
+  So !intervalId becomes false, preventing a second interval from being created.*/
+  2.Yes, absolutely ✅ — the const title variable can be updated using .textContent,
+   and your code does it correctly. -->
