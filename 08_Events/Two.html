@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    //setTimeout on console.log 
+    const sayHello = function(){
+        console.log("Hello from Omkar Champions!");
+    }
+
+    //setTimeOut for Title
+    const changeTitle = function(){
+        document.querySelector("h1").innerHTML = "Omkar Aghav the one of the Best Champion!"
+    }
+
+    const changedSet = setTimeout( changeTitle,2000);
+
+    //when we click on stop button. setTimeout() should be stopped!
+    document.querySelector("#stop").addEventListener('click', function(event){
+        console.log(event);
+        clearTimeout(changedSet);
+        console.log("Stopped!");
+    });
+
+</script>
