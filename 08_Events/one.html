@@ -22,70 +22,65 @@
 </body>
 <script>
         //better approch than write in html
-        //but it not have more features 
+        //This method lacks advanced event features
         // document.getElementById("owl").onclick = function(){
         //     alert("Owl is clicked with onclick property!")
         // }
 
-        //best practice with have additional features
+        //Best practice: provides additional features like event propagation control
         // document.getElementById("owl").addEventListener( 'click', function(event){
         //     console.log(event);
         //     alert("Owl is clicked with addEventListner!");
         // })
 
-        //Topics to need to study in events in Interview-perpective, project/coding point of view
-        //type, timestamp, defaultPrevented()
-        //target,toElement,srcElement,currentTarget
-        //clientX,clientY,screenX,screenY
-        //altKey,ctrlKey,shiftKEY,keyCode
+        
 
         //Event Propagation have two types: 1.Event Bubbling 2.Event Capturing
 
-        //Scenario-1
-        //false ==> Event-bubbling ===> (inside-->outside)-->(bottom to top). By default false hi hey!
+        // Scenario-1
+        // false ==> Event-bubbling ===> (inside-->outside)-->(bottom to top). By default false hi hey!
+        /*
         document.querySelector("#images").addEventListener('click', function(event){
             console.log("Clicked Inside Image UL!");
         },false);
 
         document.querySelector("#owl").addEventListener('click', function(event){
             console.log("Owl is clicked!");
+            //to stop propagation whether it is event bubbling or event capturing.
+            event.stopPropagation();
         },false);
-
+        */
         /*Outputs:
         Owl is clicked!
         Clicked Inside Image UL!*/
+        
+        //event.stopPropagation() & event.preventDefault() 
+        document.querySelector("#google").addEventListener('click', function(event){
+            //to prevent redirection 
+            event.preventDefault();
+            //to Stop bubbling to parent handlers
+            event.stopPropagation();
+            console.log("Google link is clicked!");
+        },false);
 
-        /*
-        //Scenario-2
-        //true ==> Event-Capturing --(outside => inside) ==>(top to bottom) . 
-        document.querySelector("#images").addEventListener('click', function(event) {
-            // console.log(event);
-            console.log("Clicked Inside Image UL!");
-        },true);
+        /***Removes image <li> on image click (Event Delegation)****/
 
-        document.querySelector("#owl").addEventListener('click', function(event){
-            // console.log(event);
-            console.log("Owl is clicked!");
-        },true);
+        document.querySelector("#images").addEventListener('click', function(event){
+            // event.target gives the exact element clicked.
+            console.log(event.target.id); //owl
+            console.log(event.target.tagName); //IMG
+            let tagname = event.target.tagName;
+            if(tagname === "IMG")
+            {
+                // console.log(event.target.src);
+                
+                let removeIt = event.target.parentNode; //<li> element
+                //easy to use
+                removeIt.remove(); //removes the entire <li> with the image
+                //another way to remove it
+                // removeIt.parentNode.removeChild(removeIt);
 
-        outputs:
-        Clicked Inside Image UL!
-        Owl is clicked!
-        */
-
-        //Scenario-3
-
-        //false ==> Event-bubbling ===> (inside-->outside)-->(bottom to top). By default false hi hey!
-        // document.querySelector("#images").addEventListener('click', function(event){
-        //     console.log("Clicked Inside Image UL!");
-        // },false);
-
-        // document.querySelector("#owl").addEventListener('click', function(event){
-        //     console.log("Owl is clicked!");
-        // },true);
-
-       /*Outputs:
-        Owl is clicked!
-        Clicked Inside Image UL!*/
+            }
+        })
 
 </script>
