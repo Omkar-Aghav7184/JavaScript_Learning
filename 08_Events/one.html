@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <!-- //bad-practice -- When you work on large project.scalability is low  -->
+            <!-- <li><img width="200px" id="owl" onclick="alert('Owl is clicked')" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li> -->
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+        //better approch than write in html
+        //but it not have more features 
+        // document.getElementById("owl").onclick = function(){
+        //     alert("Owl is clicked with onclick property!")
+        // }
+
+        //best practice with have additional features
+        // document.getElementById("owl").addEventListener( 'click', function(event){
+        //     console.log(event);
+        //     alert("Owl is clicked with addEventListner!");
+        // })
+
+        //Topics to need to study in events in Interview-perpective, project/coding point of view
+        //type, timestamp, defaultPrevented()
+        //target,toElement,srcElement,currentTarget
+        //clientX,clientY,screenX,screenY
+        //altKey,ctrlKey,shiftKEY,keyCode
+
+        //Event Propagation have two types: 1.Event Bubbling 2.Event Capturing
+
+        //Scenario-1
+        //false ==> Event-bubbling ===> (inside-->outside)-->(bottom to top). By default false hi hey!
+        document.querySelector("#images").addEventListener('click', function(event){
+            console.log("Clicked Inside Image UL!");
+        },false);
+
+        document.querySelector("#owl").addEventListener('click', function(event){
+            console.log("Owl is clicked!");
+        },false);
+
+        /*Outputs:
+        Owl is clicked!
+        Clicked Inside Image UL!*/
+
+        /*
+        //Scenario-2
+        //true ==> Event-Capturing --(outside => inside) ==>(top to bottom) . 
+        document.querySelector("#images").addEventListener('click', function(event) {
+            // console.log(event);
+            console.log("Clicked Inside Image UL!");
+        },true);
+
+        document.querySelector("#owl").addEventListener('click', function(event){
+            // console.log(event);
+            console.log("Owl is clicked!");
+        },true);
+
+        outputs:
+        Clicked Inside Image UL!
+        Owl is clicked!
+        */
+
+        //Scenario-3
+
+        //false ==> Event-bubbling ===> (inside-->outside)-->(bottom to top). By default false hi hey!
+        // document.querySelector("#images").addEventListener('click', function(event){
+        //     console.log("Clicked Inside Image UL!");
+        // },false);
+
+        // document.querySelector("#owl").addEventListener('click', function(event){
+        //     console.log("Owl is clicked!");
+        // },true);
+
+       /*Outputs:
+        Owl is clicked!
+        Clicked Inside Image UL!*/
+
+</script>
