@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request XMLHttpsRequest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: #212121;">
+    <h1>We are accesing XMLHttpsRequest API
+    </h1>
+    <button id="API">Hit API</button>
+    <div id="output"></div>
+</body>
+<script>
+
+    // Add click event listener to the button
+    document.getElementById("API").addEventListener('click', function (event) {
+
+        // Define GitHub API URL to fetch user data
+        let APIURL = "https://api.github.com/users/hiteshchoudhary";
+
+        // Create a new XMLHttpRequest object
+        let xhr = new XMLHttpRequest();
+        // Initialize a GET request
+        xhr.open("GET", APIURL);
+        // Track the state of the request everytime monitoring
+        xhr.onreadystatechange = function () { 
+
+            console.log(xhr.readyState);//Log request states (1 to 4)
+            // When request is complete
+            if (xhr.readyState === 4) {
+
+                console.log("Type of response: ", typeof (this.responseText)); //string
+                let data = JSON.parse(this.responseText);
+                console.log("Type of JSON response is: ", typeof (data)); //object
+                console.log("Data is: ", data);
+
+                // Extract required fields from the object
+                let user_followers= data.followers;
+                let user_name= data.login.toUpperCase();
+                let user_profile = data.avatar_url;
+
+                console.log("Avatar of User is: ", user_profile);
+                console.log("Username of User is: ", user_name);
+                console.log("Followers of User is: ", user_followers);
+                
+                // Display the card using template literals
+                document.querySelector("#output").innerHTML = `
+
+                <div class="card">
+                    <img src="${user_profile}" alt="Avatar" style="width:100%">
+                        <div class="container">
+                            <h4><b>Name of user is: ${user_name}</b></h4>
+                            <p>Followers is: ${user_followers}</p>
+                        </div>
+                </div>`;
+            }
+        }
+        // Send the request to the server
+        xhr.send();
+    })
+</script>
+
+</html>
