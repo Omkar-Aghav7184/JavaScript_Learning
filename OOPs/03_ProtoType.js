@@ -29,5 +29,21 @@ heroPower.omkar(); //✅ Works: Object inherits from Object.prototype
 console.log(Object.getPrototypeOf(heros)); // Array.prototype
 console.log(Object.getPrototypeOf(Object.getPrototypeOf(heros))); // Object.prototype
 
+//Task to make custom function of trueLength() which calculates actual length of all string
+
+let username = "Champion with Discipline             ";
+
+String.prototype.trueLength = function(){
+    // this refers to the current string
+    console.log(`${this}`);
+    console.log(`True Length of string is: ${this.trim().length}`);   
+}
+
+username.trueLength(); //24
+"omkar   ".trueLength(); //5
+"        iceTea   ".trueLength(); //6
+
+/*Note:1.For production code, avoid extending native prototypes unless absolutely necessary, 
+or use a utility function instead (for safety). */
 
 
