@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind in JS</title>
+</head>
+<body>
+    <button id="btn">Click Me</button>
+</body>
+<script>
+    class React{
+        constructor(library,server)
+        {
+            this.library = "React";
+            this.server = "https://localhost:3000";
+            //requirement
+            document
+            .querySelector("#btn")
+            .addEventListener('click', this.handleClick.bind(this));
+        }
+        handleClick(){
+            console.log(this);
+            console.log("Button Clicked!");
+            console.log(`Library is: ${this.library} & Server is:${this.server}`);
+        }
+    }
+
+    let app = new React()
+</script>
+</html>
+
+<!-- Notes:
+
+1.Use-Case
+You are:
+
+Creating an instance of a class (React) that holds some configuration/data (library, server).
+
+Attaching an event listener (click) to a button from inside the class constructor.
+
+Wanting to respond to that button click by logging the internal state (this.library and this.server).
+
+2.Goal
+The main goal is to make sure that inside the handleClick() method, 
+the this keyword still refers to the class instance, not to the button DOM element.
+
+3.button.addEventListener('click', this.handleClick)
+will cause this inside handleClick to refer to the DOM element (button), not the class instance.
+
+4.The Problem Without .bind(this)
+Then inside handleClick():
+this === <button> — because event handlers are called with 
+this pointing to the element that triggered the event, not your class. so this.library & this.server are undefined
+
+5.Why Use .bind(this)?
+.bind(this) fixes the value of this inside handleClick to always refer to the class instance (app object in your case).
+this.handleClick.bind(this)
+This creates a new function with this permanently bound to the instance of the class.
+this.library === "React";
+this.server === "https://localhost:3000";
+
+6. Alternative Approaches
+1. Use Arrow Function Instead (Not Reusable)
+document.querySelector("#btn").addEventListener('click', () => this.handleClick());
+Arrow functions don’t have their own this, so they use the one from the lexical scope.
+
+Drawback: Every time this runs, it creates a new function, not reusable across multiple buttons or listeners. -->
