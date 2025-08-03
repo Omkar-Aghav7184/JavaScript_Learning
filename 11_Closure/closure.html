@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure in JS </title>
+</head>
+<body style="background-color: 212121;">
+    <button id="orange">Orange</button>
+    <button id="yellow">Yellow</button>
+</body>
+<script>
+    //Lexical Analysis Simple
+    // function init() {
+    //     let name = "Mozilla"; // name is a local variable created by init
+    //     function displayName() {
+    //         // displayName() is the inner function, that forms a closure
+    //         console.log(name); // use variable declared in the parent function
+    //     }
+    //     displayName();
+    // }
+    // init();
+    /*displayName() forms a closure over name.
+      Even after init() finishes execution, displayName() remembers name from its lexical environment.*/
+
+    //Lexical Analysis 
+    // function outer(){
+    //     let username = "omkar";
+    //     console.log("Outer username: ", username);
+
+    //     function innerOne(){
+    //         let secret = "12345";
+    //         console.log("InnerOne username: ", username);
+    //         console.log("InnerOne secret: ", secret);
+    //     }
+    //     function innerTwo(){
+    //         console.log("InnerTwo username: ", username);
+    //         // console.log("InnerTwo secret: ", secret); //ReferenceError: Secret is not defined
+    //     }
+    //     // console.log("Outer",secret); //ReferenceError: Secret is not defined
+    //     innerOne();
+    //     innerTwo();
+    //     // console.log("Outer: ",secret);//ReferenceError: Secret is not defined
+        
+    // }
+    // outer();
+    // // console.log("Too Outer: ",username); // ReferenceError: username is not defined
+
+    /* innerOne() and innerTwo() both have access to username via lexical scope.
+       Only innerOne() has access to secret, because it's declared within its block.
+       This highlights encapsulation via lexical scoping.*/
+
+    //Closure simple
+    // function makeFunc() {
+    //     const name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     return displayName;
+    // }
+    // const myFunc = makeFunc();
+    // myFunc();
+    /*makeFunc() returns a function (displayName)
+     which remembers name via closure, even after makeFunc() execution ends.*/
+</script>
+<script>
+    //Practical Example of closure
+    // document.getElementById("orange").onclick = function(){
+    //     document.body.style.backgroundColor = `orange`;
+    // }
+    // document.getElementById("yellow").onclick = function(){
+    //     document.body.style.backgroundColor = `yellow`;
+    // }
+    function clickHandler(color){
+        // document.body.style.backgroundColor = `${color}`;
+
+        function BgColor(){
+            document.body.style.backgroundColor = `${color}`;
+        }
+        return BgColor;
+    }
+    document.getElementById("orange").onclick = clickHandler("orange");
+    document.getElementById("yellow").onclick = clickHandler("yellow");
+    /*clickHandler("orange") returns a function BgColor that remembers "orange" due to closure.
+        The returned function is assigned as the onclick handler.
+        This avoids repeating code and keeps logic DRY (Don't Repeat Yourself).*/
+</script>
+</html>
+
+<!-- /*Notes:
+Mistake-1:
+| Context                                            | Return function?    | Execute function?                |
+| -------------------------------------------------- | ------------------- | -------------------------------- |
+| **Closure for reusability/event binding**          | ✅ `return BgColor;` | ❌ Don’t execute                  |
+| **Lexical scope inner function testing/debugging** | ❌ No need to return | ✅ Execute directly inside parent |
+
+2.| Code                | Meaning                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| `return BgColor;`   | Returning the **function itself**, so it can be called **later**, e.g., when a button is clicked. ✅     |
+| `return BgColor();` | Executes the function **immediately**, and returns its **return value**, which is likely `undefined`. ❌ |
+
+
+3.Closures are powerful because they allow you to return functions that retain access to variables even 
+after their outer scope has exited. If you immediately invoke them, 
+you lose that deferred behavior which is key in event-driven programming (like button clicks).*/ -->
